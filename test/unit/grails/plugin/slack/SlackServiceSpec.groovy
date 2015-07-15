@@ -435,4 +435,78 @@ class SlackServiceSpec extends Specification {
 			msg.attachments[1].fields[1].title == 'title4'
     }
 
+    void "build an exaggerated message"() {
+    	given:
+    		def closure = {
+				text 'text'
+				username 'username'
+				iconUrl 'http://example.com/icon.png'
+				iconEmoji ':emoji:'
+				channel '#channel'
+				markdown true
+				linkNames 1
+				parse 'full'
+				unfurlLinks true
+				unfurlMedia true
+			    attachment {
+			        fallback 'fallback'
+					color 'good'
+					pretext 'pretext'
+					authorName 'authorName'
+					authorLink 'http://example.com/author'
+					authorIcon 'http://example.com/author.png'
+					title 'title'
+					titleLink 'http://example.com/title'
+					text 'text'
+					imageUrl 'http://example.com/image.png'
+					thumbUrl 'http://example.com/thumb.png'
+					markdownIn(['text','fields'])
+			        field {
+						title 'title1'
+						value 'some long attachment field value'
+						isShort false
+					}
+			        field {
+						title 'title2'
+						value 'value'
+						isShort true
+					}
+			    }
+			    attachment {
+			        text 'other attachment'
+			    }
+    		}
+		when:
+			def msg = service.buildMessage(closure)
+		then:
+			msg
+			msg.text == 'text'
+			msg.username == 'username'
+			msg.icon_url == 'http://example.com/icon.png'
+			msg.icon_emoji == ':emoji:'
+			msg.channel == '#channel'
+			msg.mrkdwn == true
+			msg.link_names == 1
+			msg.parse == 'full'
+			msg.unfurl_links == true
+			msg.unfurl_links == true
+			msg.attachments.size() == 2
+			msg.attachments[0].fallback == 'fallback'
+			msg.attachments[0].color == 'good'
+			msg.attachments[0].pretext == 'pretext'
+			msg.attachments[0].author_name == 'authorName'
+			msg.attachments[0].author_link == 'http://example.com/author'
+			msg.attachments[0].author_icon == 'http://example.com/author.png'
+			msg.attachments[0].title == 'title'
+			msg.attachments[0].title_link == 'http://example.com/title'
+			msg.attachments[0].text == 'text'
+			msg.attachments[0].image_url == 'http://example.com/image.png'
+			msg.attachments[0].thumb_url == 'http://example.com/thumb.png'
+			msg.attachments[0].mrkdwn_in == ['text','fields']
+			msg.attachments[0].fields.size() == 2
+			msg.attachments[0].fields[0].title == 'title1'
+			msg.attachments[0].fields[0].value == 'some long attachment field value'
+			msg.attachments[0].fields[0].isShort == false
+    }
+
 }
