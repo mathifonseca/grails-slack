@@ -3,6 +3,8 @@ package grails.plugin.slack
 import grails.plugin.slack.builder.SlackMessageBuilder
 import grails.plugin.slack.exception.SlackMessageException
 import grails.plugins.rest.client.RestBuilder
+import org.springframework.http.converter.StringHttpMessageConverter
+import java.nio.charset.Charset
 
 class SlackService {
 
@@ -28,7 +30,10 @@ class SlackService {
 
     	def rest = new RestBuilder()
 
+		rest.restTemplate.setMessageConverters([new StringHttpMessageConverter(Charset.forName("UTF-8"))])
+
 		def resp = rest.post(webhook.toString()) {
+			header('Content-Type', 'application/json;charset=UTF-8')
 			json jsonMessage
 		}
 
