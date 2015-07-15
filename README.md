@@ -59,7 +59,7 @@ Some of the parameters you can send in the payload have a default value set in t
 
 ##Usage
 
-The plugin provides a service called `SlackService` (that was unexpected, right?). You can inject it in your services or controllers and use it's `send()` method to send your messages. This message receives a closure with the DSL you need to create your message.
+The plugin provides a service called [`SlackService`](grails-app/services/grails/plugin/slack/SlackService.groovy) (that was unexpected, right?). You can inject it in your services or controllers and use it's `send()` method to send your messages. This message receives a closure with the DSL you need to create your message.
 
 Here is an example that uses **everything** available for you. Most of the fields are optional or have default values, so this is kind of an exaggerated use case. Remember to check the constraints in the plugin classes and the documentation in Slack API to know what do each of these things mean and how they will look in your Slack client.
 
