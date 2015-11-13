@@ -1,5 +1,6 @@
 package grails.plugin.slack
 
+import grails.test.mixin.TestFor
 import grails.test.mixin.TestMixin
 import grails.test.mixin.web.ControllerUnitTestMixin
 import spock.lang.Specification
