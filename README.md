@@ -1,6 +1,6 @@
 #Grails Plugin for Slack integration using Webhooks
 
-[![Build Status](https://travis-ci.org/mathifonseca/grails-slack.svg?branch=master)](https://travis-ci.org/mathifonseca/grails-slack)
+[![Build Status](https://travis-ci.org/mhashem/grails-slack.svg?branch=master)](https://travis-ci.org/mhashem/grails-slack)
 
 This plugin lets you send messages your Slack users or channels from a Grails application.
 
