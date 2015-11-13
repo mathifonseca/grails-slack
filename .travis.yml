@@ -1,6 +1,6 @@
 language: groovy
 jdk:
- - oraclejdk7
+ - oraclejdk8
 branches:
  only:
  - master
@@ -9,6 +9,6 @@ before_script:
  - chmod +x grailsw
 
 script: ./grailsw stats
- && chmod +x /home/travis/.grails/wrapper/2.3.11/grails-2.3.11/bin/grails
+ && chmod +x /home/travis/.grails/wrapper/2.5.1/grails-2.5.1/bin/grails
  && ./grailsw compile --refresh-dependencies
  && ./grailsw test-app
