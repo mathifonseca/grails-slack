@@ -3,9 +3,8 @@ package grails.plugin.slack
 import grails.validation.Validateable
 import groovy.transform.ToString
 
-@Validateable
 @ToString(includeNames=true)
-class SlackMessageAttachment implements Serializable {
+class SlackMessageAttachment implements Serializable, Validateable {
 
 	String fallback
 	String color

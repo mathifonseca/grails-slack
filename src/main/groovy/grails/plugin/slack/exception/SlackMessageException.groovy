@@ -1,6 +1,6 @@
 package grails.plugin.slack.exception
 
-import org.codehaus.groovy.grails.exceptions.GrailsException
+import org.grails.core.exceptions.GrailsException
 
 class SlackMessageException extends GrailsException {
 

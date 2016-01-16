@@ -1,5 +1,6 @@
 package grails.plugin.slack
 
+import grails.test.mixin.TestFor
 import grails.test.mixin.TestMixin
 import grails.test.mixin.web.ControllerUnitTestMixin
 import spock.lang.Specification
@@ -317,7 +318,6 @@ class SlackServiceSpec extends Specification {
 			msg.attachments[0].fields[0].title == 'title'
 			msg.attachments[0].fields[0].value == 'value'
 			msg.attachments[0].fields[0].isShort == true
-			msg.attachments[0].fields[0].encodeAsJson() == "{\"title\":\"title\",\"value\":\"value\",\"short\":true}"
     }
 
     void "build message with one attachment and one field without title"() {

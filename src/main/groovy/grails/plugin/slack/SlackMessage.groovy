@@ -3,9 +3,8 @@ package grails.plugin.slack
 import grails.validation.Validateable
 import groovy.transform.ToString
 
-@Validateable
 @ToString(includeNames=true)
-class SlackMessage implements Serializable {
+class SlackMessage implements Serializable, Validateable {
 
 	String text
 	String username
