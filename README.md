@@ -6,12 +6,15 @@ This plugin lets you send messages your Slack users or channels from a Grails ap
 
 ##Installation
 
-Add the plugin to your `BuildConfig.groovy` using the last version specified in the [Grails Plugins Portal](http://grails.org/plugin/slack).
-
-It should look like this:
+Add this into your `build.gradle`:
 
 ```groovy
-compile ":slack:1.0.0"
+repositories {
+	maven { url "http://dl.bintray.com/mathifonseca/plugins" }
+}
+dependencies {
+	compile "org.grails.plugins:slack:2.0.0"
+}
 ```
 
 ##Configuration
