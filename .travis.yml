@@ -6,9 +6,6 @@ branches:
  - master
 
 before_script:
- - chmod +x grailsw
+ - chmod +x gradlew
 
-script: ./grailsw stats
- && chmod +x /home/travis/.grails/wrapper/2.3.11/grails-2.3.11/bin/grails
- && ./grailsw compile --refresh-dependencies
- && ./grailsw test-app
+script: ./gradlew test
