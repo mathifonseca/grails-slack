@@ -10,7 +10,7 @@ Add this into your `build.gradle`:
 
 ```groovy
 repositories {
-	maven { url "http://dl.bintray.com/mathifonseca/plugins" }
+	maven { url "http://dl.bintray.com/mathifonseca/grails-plugins" }
 }
 dependencies {
 	compile "org.grails.plugins:slack:2.0.0"
