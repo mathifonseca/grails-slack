@@ -38,7 +38,7 @@ class SlackMessageAttachment implements Serializable, Validateable {
 
 	 static {
 	     grails.converters.JSON.registerObjectMarshaller(SlackMessageAttachment) { that ->
-			 return that.class.declaredFields.findAll { that[it.name] && !java.lang.reflect.Modifier.isStatic(it.modifiers) && !it.synthetic && it.name != 'errors' }.collectEntries { [ it.name, that[it.name]] }
+			 return that.class.declaredFields.findAll { that[it.name] && !java.lang.reflect.Modifier.isStatic(it.modifiers) && !it.synthetic && it.name != 'errors' && !it.name.startsWith('grails_') }.collectEntries { [ it.name, that[it.name]] }
 	     }
 	 }
 

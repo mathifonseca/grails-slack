@@ -318,6 +318,7 @@ class SlackServiceSpec extends Specification {
 			msg.attachments[0].fields[0].title == 'title'
 			msg.attachments[0].fields[0].value == 'value'
 			msg.attachments[0].fields[0].isShort == true
+            msg.attachments[0].fields[0].encodeAsJson().toString() == '''{"title":"title","value":"value","short":true}'''
     }
 
     void "build message with one attachment and one field without title"() {
