@@ -13,7 +13,7 @@ repositories {
 	maven { url "http://dl.bintray.com/mathifonseca/grails-plugins" }
 }
 dependencies {
-	compile "org.grails.plugins:slack:2.0.0"
+	compile "org.grails.plugins:slack:3.0.0"
 }
 ```
 
