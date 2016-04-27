@@ -1,5 +1,5 @@
 class SlackGrailsPlugin {
-    def version = "1.0.2"
+    def version = "1.1.0"
     def grailsVersion = "2.3 > *"
     def title = "Slack Plugin"
     def author = "Mathias Fonseca"
