@@ -24,7 +24,7 @@ class SlackService {
 			throw new SlackMessageException("Slack webhook is not valid")
 		}
 
-    	def jsonMessage = message.encodeAsJson()
+    	String jsonMessage = message.encodeAsJson().toString()
 
     	log.debug "Sending message : ${jsonMessage}"
 
