@@ -26,7 +26,7 @@ class SlackMessageAttachment implements Serializable {
 
 	static constraints = {
 		fallback nullable:true
-		color nullable:true, validator: { !it || it in ['good', 'warning', 'danger']|| it =~ /^#(?:[0-9a-fA-F]{3}){1,2}$/ }
+		color nullable:true, validator: { !it || it in ['good', 'warning', 'danger'] || it =~ /^#(?:[0-9a-fA-F]{3}){1,2}$/ }
 		pretext nullable:true
 		author_name nullable:true
 		author_link nullable:true, url:true
@@ -36,7 +36,7 @@ class SlackMessageAttachment implements Serializable {
 		text nullable:true
 		image_url nullable:true, url:true
 		thumb_url nullable:true, url:true
-		mrkdwn_in nullable:true, validator: { list -> list.every { it in ['pretext', 'text', 'fields']} }
+		mrkdwn_in nullable:true, validator: { list -> list.every { it in ['pretext', 'text', 'fields'] } }
 		fields minSize:0
 		footer nullable: true
 		footer_icon nullable: true

@@ -75,7 +75,7 @@ class SlackMessageAttachmentBuilder {
 	}
 	
 	void ts(Date date) {
-		att.ts = date.getTime()/1000
+		att.ts = date.getTime() / 1000
 	}
 
 	void field(Closure closure) {
