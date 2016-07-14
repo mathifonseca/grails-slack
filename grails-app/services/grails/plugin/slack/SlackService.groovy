@@ -24,11 +24,13 @@ class SlackService {
 			throw new SlackMessageException("Slack webhook is not valid")
 		}
 
-    	def jsonMessage = message.encodeAsJson()
+    	String jsonMessage = message.encodeAsJson().toString()
 
     	log.debug "Sending message : ${jsonMessage}"
 
     	def rest = new RestBuilder()
+
+        rest.restTemplate.setMessageConverters([new StringHttpMessageConverter(Charset.forName("UTF-8"))])
 
 		def resp = rest.post(webhook.toString()) {
 			header('Content-Type', 'application/json;charset=UTF-8')
