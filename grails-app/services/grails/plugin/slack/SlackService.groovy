@@ -30,8 +30,6 @@ class SlackService {
 
     	def rest = new RestBuilder()
 
-		rest.restTemplate.setMessageConverters([new StringHttpMessageConverter(Charset.forName("UTF-8"))])
-
 		def resp = rest.post(webhook.toString()) {
 			header('Content-Type', 'application/json;charset=UTF-8')
 			json jsonMessage
