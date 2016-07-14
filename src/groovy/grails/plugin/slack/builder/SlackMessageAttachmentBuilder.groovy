@@ -65,6 +65,18 @@ class SlackMessageAttachmentBuilder {
 	void markdownIn(List<String> mrkdwnIn) {
 		att.mrkdwn_in = mrkdwnIn
 	}
+	
+	void footer(String footer) {
+		att.footer = footer
+	}
+	
+	void footerIcon(String icon) {
+		att.footer_icon = icon
+	}
+	
+	void ts(Date date) {
+		att.ts = date.getTime()/1000
+	}
 
 	void field(Closure closure) {
 		def builder = new SlackMessageAttachmentFieldBuilder()
