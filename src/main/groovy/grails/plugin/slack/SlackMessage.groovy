@@ -23,7 +23,7 @@ class SlackMessage implements Serializable, Validateable {
 		username nullable:true
 		icon_url nullable:true, url:true
 		icon_emoji nullable:true, matches: "^:.+:\$"
-		channel nullable:true, matches: "^[@|#].+\$"
+		channel nullable:true, blank:false
 		parse nullable:true, validator: { !it || it in ['full','none'] }
 		link_names min:0, max:1
 		attachments minSize:0
