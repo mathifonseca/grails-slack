@@ -58,7 +58,7 @@ class SlackServiceSpec extends Specification {
     	given:
     		def closure = {
     			text 'text'
-    			channel '!invalidchannel'
+    			channel ''
     		}
 		when:
 			service.buildMessage(closure)
