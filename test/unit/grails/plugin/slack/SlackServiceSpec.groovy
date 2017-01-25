@@ -53,18 +53,6 @@ class SlackServiceSpec extends Specification {
 			thrown SlackMessageException
     }
 
-    void "build message with invalid channel"() {
-    	given:
-    		def closure = {
-    			text 'text'
-    			channel '!invalidchannel'
-    		}
-		when:
-			service.buildMessage(closure)
-		then:
-			thrown SlackMessageException
-    }
-
     void "build message with invalid parse value"() {
     	given:
     		def closure = {
@@ -317,7 +305,6 @@ class SlackServiceSpec extends Specification {
 			msg.attachments[0].fields[0].title == 'title'
 			msg.attachments[0].fields[0].value == 'value'
 			msg.attachments[0].fields[0].isShort == true
-			msg.attachments[0].fields[0].encodeAsJson() == "{\"title\":\"title\",\"value\":\"value\",\"short\":true}"
     }
 
     void "build message with one attachment and one field without title"() {
