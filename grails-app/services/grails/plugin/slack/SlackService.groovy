@@ -12,40 +12,48 @@ class SlackService {
 
     void send(Closure closure) throws SlackMessageException {
 
-    	def message = buildMessage(closure)
-
-    	def webhook = grailsApplication.config.slack.webhook
-
-    	if (!webhook) throw new SlackMessageException("Slack webhook is not valid")
-
-    	try {
-    		webhook.toURL()
-		} catch (Exception ex) {
-			throw new SlackMessageException("Slack webhook is not valid")
-		}
+        SlackMessage message = buildMessage(closure)
 
     	String jsonMessage = message.encodeAsJson().toString()
 
     	log.debug "Sending message : ${jsonMessage}"
 
-    	def rest = new RestBuilder()
+        def config = grailsApplication.config.slack
 
-        rest.restTemplate.setMessageConverters([new StringHttpMessageConverter(Charset.forName("UTF-8"))])
+        boolean isMock = config.mock
 
-		def resp = rest.post(webhook.toString()) {
-			header('Content-Type', 'application/json;charset=UTF-8')
-			json jsonMessage
-		}
+        if (!isMock) {
 
-		if (resp.status != 200 || resp.text != 'ok') {
-			throw new SlackMessageException("Error while calling Slack -> ${resp.text}")
-		}
+            String webhook = config.webhook
+
+            if (!webhook) throw new SlackMessageException("Slack webhook is not valid")
+
+            try {
+                webhook.toURL()
+            } catch (Exception ex) {
+                throw new SlackMessageException("Slack webhook is not valid")
+            }
+
+            RestBuilder rest = new RestBuilder()
+
+            rest.restTemplate.setMessageConverters([ new StringHttpMessageConverter(Charset.forName("UTF-8")) ])
+
+            def resp = rest.post(webhook.toString()) {
+                header('Content-Type', 'application/json;charset=UTF-8')
+                json jsonMessage
+            }
+
+            if (resp.status != 200 || resp.text != 'ok') {
+                throw new SlackMessageException("Error while calling Slack -> ${resp.text}")
+            }
+
+        }
 
     }
 
     private SlackMessage buildMessage(Closure closure) throws SlackMessageException {
 
-    	def builder = new SlackMessageBuilder()
+        SlackMessageBuilder builder = new SlackMessageBuilder()
         closure.delegate = builder
         closure.resolveStrategy = Closure.DELEGATE_FIRST
         closure.call(builder)
